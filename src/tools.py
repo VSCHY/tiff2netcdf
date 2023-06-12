@@ -72,7 +72,11 @@ def GDP_mask(dGDP):
 
 def POP_mask(dPOP):
     with Dataset(dPOP, "r") as nc:
-        mask  = nc["UN WPP-Adjusted Population Count, v4.11 (2000, 2005, 2010, 2015, 2020): 2.5 arc-minutes"][0,:,:]
+        print(nc.variables.keys())
+        if "POPULATION 2020" in nc.variables.keys():
+            mask  = nc["POPULATION 2020"][:,:]
+        else:
+            mask  = nc["UN WPP-Adjusted Population Count, v4.11 (2000, 2005, 2010, 2015, 2020): 2.5 arc-minutes"][0,:,:]
         mask = mask.mask.astype(np.int32)
         mask = 1-mask
     return mask

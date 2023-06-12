@@ -94,6 +94,12 @@ class Grid:
       self.ni = self.lon.shape[0]
 
    #############################
+   
+   def get_data(self, varn):
+      data = self.ds[varn].values
+      return data
+   
+   #############################
 
    def load_mask(self, landseamask):
       """
@@ -106,7 +112,7 @@ class Grid:
       self.mask = self.mask[j0:j1, i0:i1]
       
       A  = np.where(self.mask == 1)
-      
+            
       if len(A) == 1 :
          self.ind_land = [[j,i] for j in range(self.nj) for i in range(self.ni)]
       else:

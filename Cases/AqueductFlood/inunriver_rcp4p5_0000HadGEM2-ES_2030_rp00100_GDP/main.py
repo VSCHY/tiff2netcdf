@@ -4,9 +4,11 @@ from src import Grid, GDP_mask
 from src import Raster
 import multiprocessing
 import numpy as np
+import numpy.ma as ma
+import time
+import subprocess
 import xarray as xr
 import tqdm
-import numpy.ma as ma
 
 ######################
 
@@ -16,8 +18,8 @@ TEMP = "/home/aschrapffer/Documents/tiff2netcdf/TEMP/"
 
 ######################
 
-name = "inuncoast_rcp8p5_wtsub_2050_rp0100_GDP"
-dflood = "/home/aschrapffer/DATA/FLOOD/AqueductFloods/Coastal/inuncoast_rcp8p5_wtsub_2050_rp0100_0.tif"
+name = "inunriver_rcp4p5_0000HadGEM2-ES_2030_rp00100_GDP"
+dflood = "/home/aschrapffer/DATA/FLOOD/AqueductFloods/Riverine/inunriver_rcp4p5_0000HadGEM2-ES_2030_rp00100.tif"
 
 ######################
 
