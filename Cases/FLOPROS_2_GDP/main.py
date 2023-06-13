@@ -5,7 +5,9 @@ from src import Grid, GDP_mask
 import multiprocessing
 import numpy as np
 import time
-
+import xarray as xr
+import warnings
+warnings.filterwarnings("ignore")
 ######################
 
 d_flopros = "/home/aschrapffer/DATA/FLOOD/River_Coast_Protections/Scussolini_etal_Suppl_info/FLOPROS_shp_V1/FLOPROS_shp_V1.shp"
@@ -39,10 +41,12 @@ def get_protection(index):
     
     gdf = sh.get_poly_from_lonlat(lon0, lat0)
     if gdf is None:
-        return [-99 for varn in VARN_LIST]
-    else:
-       L_out = [gdf[varn].iloc[0] for varn in VARN_LIST]
-       return L_out
+        gdf = sh.get_poly_closest(lon0, lat0)
+        if gdf is None:
+            return [-99 for varn in VARN_LIST]
+        
+    L_out = [gdf[varn].iloc[0] for varn in VARN_LIST]
+    return L_out
 
 ####################################################
 
