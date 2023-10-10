@@ -41,6 +41,7 @@ class Grid:
       self.lat = nc.variables[self.lat_name][:]
 
       if self.lat[1]<self.lat[0]:
+      
          self.rev_lat = True
       else:
          self.rev_lat = False
